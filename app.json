@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logos/bini-logo-white.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.arelean.BINI"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "cc50c4e0-1ee8-4711-8d99-a81d7518d42c"
+      }
     }
   }
 }
