@@ -3,7 +3,9 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { FontAwesome } from '@expo/vector-icons';
-
+import React, { useState } from 'react';
+import * as Linking from 'expo-linking';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 export default function HomeScreen() {
   const { width } = Dimensions.get('window');
 
@@ -19,32 +21,30 @@ export default function HomeScreen() {
   ];
 
   const discography = [
-    { id: 1, song: 'Cherry On Top', about: 'Single | 2024 | 1 Song', picture: require('@/assets/images/discography/COT.png') },
-    { id: 2, song: 'Talaarawan', about: 'Album | 2024 | 6 Songs', picture: require('@/assets/images/discography/tala.png') },
-    { id: 3, song: 'Feel Good', about: 'Album | 2022 | 7 Songs', picture: require('@/assets/images/discography/FG.png') },
-    { id: 4, song: 'Born To Win', about: 'Album | 2021 | 12 Songs', picture: require('@/assets/images/discography/BTW.png') },
-    { id: 5, song: 'Pantropiko', about: 'Single | 2023 | 1 Song', picture: require('@/assets/images/discography/pantropiko.png') },
-    { id: 6, song: 'Salamin', about: 'Album | 2024 | 6 Songs', picture: require('@/assets/images/discography/tala.png') },
-    { id: 7, song: 'Karera', about: 'Single | 2023 | 1 Song', picture: require('@/assets/images/discography/karera.png') },
-    { id: 8, song: 'Lagi', about: 'Single | 2023 | 1 Song', picture: require('@/assets/images/discography/lagi.png') },
-    { id: 9, song: 'Na Na Nandito Lang', about: 'Album | 2022 | 4 Songs', picture: require('@/assets/images/discography/nandito.png') },
+    { id: 1, song: 'Cherry On Top', about: 'Single | 2024 | 1 Song', picture: require('@/assets/images/discography/COT.png'), spotifyLink: 'https://open.spotify.com/album/3ZIjUhwlei1sT2yetvypvJ?si=j17p7imdSk-0otAQKoBgeQ',},
+    { id: 2, song: 'Talaarawan', about: 'Album | 2024 | 6 Songs', picture: require('@/assets/images/discography/tala.png'), spotifyLink: 'https://open.spotify.com/album/2eT1XApzS0GmkJLMlCBdVv?si=KyHiRASNTFe1--E39hKAWA', },
+    { id: 3, song: 'Feel Good', about: 'Album | 2022 | 7 Songs', picture: require('@/assets/images/discography/FG.png'), spotifyLink: 'https://open.spotify.com/album/7H64wogfyQUcRqFZFbMV9S?si=q1nim5XyTkaYHzp6-sZ-IQ', },
+    { id: 4, song: 'Born To Win', about: 'Album | 2021 | 12 Songs', picture: require('@/assets/images/discography/BTW.png'), spotifyLink: 'https://open.spotify.com/album/28rgW6IXDsrk4YtTcFtGGK?si=ZNrTcNjEQQCqONTepmWswQ', },
+    { id: 5, song: 'Pantropiko', about: 'Single | 2023 | 1 Song', picture: require('@/assets/images/discography/pantropiko.png'), spotifyLink: 'https://open.spotify.com/album/3NYOeU6Uwj2FP1Zz1rWVz8?si=HMbg9_G0TyG2hPlkv6BLsw', },
+    { id: 6, song: 'Salamin', about: 'Album | 2024 | 6 Songs', picture: require('@/assets/images/discography/tala.png'), spotifyLink: 'https://open.spotify.com/track/1iIJtD9hkzw4ZHfR7ND9yb?si=4188348d18f74b4a',},
+    { id: 7, song: 'Karera', about: 'Single | 2023 | 1 Song', picture: require('@/assets/images/discography/karera.png'), spotifyLink: 'https://open.spotify.com/album/6eG8V6yBx09xmexOLpcn9R?si=a4AfeI_4QUSObj1Mmp-iAQ', },
+    { id: 8, song: 'Lagi', about: 'Single | 2023 | 1 Song', picture: require('@/assets/images/discography/lagi.png'), spotifyLink: 'https://open.spotify.com/track/5YV9UyeC3dMV4kuRiTMGJs?si=d753d10829274396', },
+    { id: 9, song: 'Na Na Nandito Lang', about: 'Album | 2022 | 4 Songs', picture: require('@/assets/images/discography/nandito.png'), spotifyLink: 'https://open.spotify.com/track/3iiFRTfSUP34KVekvWoV3F?si=23d867ce55aa463d',},
   ];
+
+  function handlePress(arg0: string): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#7ACAD2', dark: '#7ACAD2' }}
       headerImage={
         <View style={styles.imageContainer}>
           <Image
-            source={require('@/assets/images/homepage/bini-group-photo.jpg')}
+            source={require('@/assets/images/homepage/bini_grp.png')}
             style={styles.biniGroupPhoto}
           />
-          <View style={styles.verticalTextContainer}>
-            <ThemedText style={styles.verticalText}>Ᏸ</ThemedText>
-            <ThemedText style={styles.verticalText}>Ꭵ</ThemedText>
-            <ThemedText style={styles.verticalText}>Ꮑ</ThemedText>
-            <ThemedText style={styles.verticalText}>Ꭵ</ThemedText>
-          </View>
         </View>
       }
     >
@@ -65,12 +65,16 @@ export default function HomeScreen() {
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText>
-          Bini (stylized as BINI) is an eight-member Filipino girl group formed by ABS-CBN Star Hunt Academy,
-          consisting of Aiah, Colet, Maloi, Gwen, Stacey, Mikha, Jhoanna, and Sheena. Their pre-debut single
-          "Da Coconut Nut" was released on November 20, 2020.
+          Filipino pop phenomenon BINI features 8 multi-talented members, Aiah, Colet, Maloi, Gwen, Stacey,
+          Mikha, Jhoanna, and Sheena. The girls have quickly become the biggest female Filipino artist in history,
+          and second biggest artist overall in the Philippines, holding both the #1 & #2 spots on the top Filipino
+          music charts simultaneously with the hits “Salamin, Salamin” and “Pantropiko.”
         </ThemedText>
         <ThemedText>
-          The group officially debuted on June 11, 2021 with the release of their debut single Born To Win.
+          BINI’s sound is shaped by homegrown artists and global sensations alike. On the heels of their 
+          unprecedented growth in socials and in streaming listenership (30M +), the girls recently sold out their 
+          “BINIverse” tour in record-breaking time, and have been heralded as one of Teen Vogue’s 2024 Girl Groups 
+          to watch!
         </ThemedText>
       </ThemedView>
 
@@ -99,22 +103,67 @@ export default function HomeScreen() {
         contentContainerStyle={styles.discographyContainer}
       >
         {discography.map((disco) => (
-          <View key={disco.id} style={[styles.discographyItem, { width: width * 0.8 }]}>
-            <Image
-              source={disco.picture}
-              style={styles.discographyImage}
-              resizeMode="cover"
-            />
-            <ThemedText style={styles.discographySong}>{disco.song}</ThemedText>
-            <ThemedText style={styles.discographyAbout}>{disco.about}</ThemedText>
-          </View>
-        ))}
+            <View key={disco.id} style={[styles.discographyItem, { width: width * 0.8 }]}>
+              <DiscographyItem
+                picture={disco.picture}
+                song={disco.song}
+                about={disco.about}
+                spotifyLink={disco.spotifyLink}
+              />
+            </View>
+          ))}
       </ScrollView>
-
+      
       <TouchableOpacity style={styles.learnMoreButton}>
         <ThemedText style={styles.learnMoreButtonText}>Learn more about BINI</ThemedText>
       </TouchableOpacity>
+
+      <ThemedView style={styles.footer}>
+      <View style={styles.socialMediaContainer}>
+        <TouchableOpacity onPress={() => Linking.openURL('https://www.facebook.com/BINIph.official')}>
+          <FontAwesome name="facebook-square" size={30} style={styles.socialIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity  onPress={() => Linking.openURL('https://x.com/BINI_ph')}>
+          <FontAwesome6 name="x-twitter" size={30} style={styles.socialIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/bini_ph?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==')}>
+          <FontAwesome name="instagram" size={30} style={styles.socialIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/BINIPH')}>
+          <FontAwesome name="youtube-play" size={30} style={styles.socialIcon} />
+        </TouchableOpacity>
+      </View>
+      <ThemedText style={styles.copyright}>© 2024 BINI Official. All rights reserved.</ThemedText>
+    </ThemedView>
     </ParallaxScrollView>
+  );
+}
+
+function DiscographyItem({ picture, song, about, spotifyLink }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={() => Linking.openURL(spotifyLink)}
+      onPressIn={() => setIsHovered(true)}
+      onPressOut={() => setIsHovered(false)}
+    >
+      <Image
+        source={picture}
+        style={styles.discographyImage}
+        resizeMode="cover"
+      />
+      {isHovered && (
+        <View style={styles.hoverOverlay}>
+          <TouchableOpacity style={styles.streamButton} >
+            <ThemedText style={styles.streamButtonText} onPress={() => Linking.openURL(spotifyLink)}>Stream Now</ThemedText>
+          </TouchableOpacity>
+        </View>
+      )}
+      <ThemedText style={styles.discographySong}>{song}</ThemedText>
+      <ThemedText style={styles.discographyAbout}>{about}</ThemedText>
+    </TouchableOpacity>
   );
 }
 
@@ -131,8 +180,8 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   biniGroupPhoto: {
-    height: 300,
-    width: 380,
+    height: 250,
+    width: 420,
     top: 20,
     position: 'relative',
   },
@@ -246,17 +295,66 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   learnMoreButton: {
-    backgroundColor: '#A1CEDC',
+    backgroundColor: 'transparent',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
     alignSelf: 'center',
     borderWidth: 2,
+    borderColor: '#7ACAD2'
   },
   learnMoreButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  footer: {
+    marginTop: 50,
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  socialMediaContainer: {
+    flexDirection: 'row',
+    gap: 16,
+    marginBottom: 8,
+  },
+  socialIcon: {
+    color: '#7ACAD2',
+  },
+  copyright: {
+    fontSize: 14,
+    color: '#888888',
+    textAlign: 'center',
+  },
+  hoverOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  streamButton: {
+    backgroundColor: '#1DB954',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 50,
+  },
+  streamButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  videoContainer: {
+    width: '100%',
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 20,
+    overflow: 'hidden',
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
   },
 });

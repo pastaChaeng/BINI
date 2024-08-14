@@ -17,8 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logos/bini-logo-white.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/logos/bini-logo.jpg",
       },
       "package": "com.arelean.BINI"
     },
